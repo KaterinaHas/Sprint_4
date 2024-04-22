@@ -44,12 +44,12 @@ class TestBooksCollector:
     def test_set_book_genre_set_one_genre(self, book):
         book.add_new_book('Анна Каренина')
         book.set_book_genre('Анна Каренина', 'Фантастика')
-        assert book.books_genre['Анна Каренина'] == 'Фантастика'
+        assert book.get_books_genre().get('Анна Каренина') == 'Фантастика'
 
     def test_set_book_genre_not_genre_in_list_not_set_genre(self, book):
         book.add_new_book('Анна Каренина')
         book.set_book_genre('Анна Каренина', 'Триллер')
-        assert book.books_genre['Анна Каренина'] == ''
+        assert book.get_books_genre().get('Анна Каренина') == ''
 
     def test_get_book_genre_name_in_list_is_true(self, book):
         book.add_new_book('Анна Каренина')
@@ -92,13 +92,13 @@ class TestBooksCollector:
     def test_add_book_in_favorites_add_one_book(self, book):
         book.add_new_book('Анна Каренина')
         book.add_book_in_favorites('Анна Каренина')
-        assert book.favorites == ['Анна Каренина']
+        assert book.get_list_of_favorites_books() == ['Анна Каренина']
 
     def test_delete_book_from_favorites_delete_one_book(self, book):
         book.add_new_book('Анна Каренина')
         book.add_book_in_favorites('Анна Каренина')
         book.delete_book_from_favorites('Анна Каренина')
-        assert book.favorites == []
+        assert book.get_list_of_favorites_books() == []
 
     def test_get_list_of_favorites_books_list_not_empty(self, book):
         book.add_new_book('Анна Каренина')
